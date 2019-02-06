@@ -28,7 +28,7 @@ def make_container_widget(widgets, vertical = True):
 class Application():
     def __init__(self):
         # Creation of the main application and style
-        app = QApplication([])
+        app = QApplication(["SPTP"])
         app.setStyle('Fusion')
         palette = QPalette()
         palette.setColor(QPalette.ButtonText, Qt.black)
@@ -39,7 +39,7 @@ class Application():
         
         # Creation of widget panels
         self.create_connection_panel()
-        self.create_m_panel
+        self.create_main_panel
 
         # Display the front panel
         window.setCentralWidget(self.f_panel)
@@ -63,7 +63,7 @@ class Application():
         c_input.setText("127.0.0.1")
 
         c_button = QPushButton("Connect")      
-        c_button.clicked.connect(self.create_m_panel)
+        c_button.clicked.connect(self.create_main_panel)
 
         c_subpanel = make_container_widget([c_label_IP, c_input], vertical = False)
         c_panel = make_container_widget([c_label, c_subpanel, c_button])
@@ -74,6 +74,7 @@ class Application():
         l_input = QLineEdit()
         l_input.setText("4444")
         l_button = QPushButton("Listen")
+        l_button.clicked.connect(self.create_listen_panel)
 
         l_subpanel = make_container_widget([l_label_port, l_input],vertical = False)
         l_panel = make_container_widget([l_label, l_subpanel, l_button])
@@ -90,12 +91,12 @@ class Application():
         def show_c_panel():
             l_panel.hide()
             c_panel.show()
-            c_panel.adjustSize()
+            self.window.adjustSize()
 
         def show_l_panel():
             c_panel.hide()
             l_panel.show()
-            l_panel.adjustSize()
+            self.window.adjustSize()
 
         fc_button.clicked.connect(show_c_panel)
         fl_button.clicked.connect(show_l_panel)
@@ -104,7 +105,7 @@ class Application():
         self.f_panel = f_panel # Used in __init__()
 
     # Create a main panel that serves as the primary application interface
-    def create_m_panel(self):
+    def create_main_panel(self):
         # Create two displays for the local and remote file systems
         m_local_fs_display = QTextEdit()
         m_local_fs_display.setReadOnly(True)
@@ -113,18 +114,27 @@ class Application():
 
         # Combine the displays into a container widget
         mh_panel = make_container_widget([m_local_fs_display, m_remote_fs_display], vertical = False)
-        
-        # PROTOTYPING
-        m_prototype1 = QLineEdit()
-        m_prototype2 = QLineEdit()
 
-        # VERTICAL PROTOTYPE
-        mv_panel = make_container_widget([m_prototype1, m_prototype2])
+        mh_history = QTextEdit()
+        mh_history.setReadOnly(True)
+        mh_history.setFixedHeight(100)
+
+        # Prototyping the command line interface
+        msr_button = QPushButton()
+        msr_input = QLineEdit()
+        
+        # Transfer command line
+        mh_input = make_container_widget([msr_button, msr_input], vertical = False)
 
         # Create entire panel that will be the window layout
-        m_panel = make_container_widget([mh_panel, mv_panel])
+        m_panel = make_container_widget([mh_panel, mh_history, mh_input])
 
         self.window.setCentralWidget(m_panel)
+        self.window.setFixedSize(800,800)
+        self.window.setWindowTitle("Simple Python Transfer Protocol")
+
+    def create_listen_panel():
+        pass
 
     def execute(self):
         self.app.exec()
