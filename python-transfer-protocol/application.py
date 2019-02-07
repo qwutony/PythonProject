@@ -1,4 +1,5 @@
-#/usr/bin/python3
+# This is the application developed using PyQt5
+# It allows for a graphical visualisation of the file transfer protocol 
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
@@ -7,7 +8,10 @@ from PyQt5.QtGui import QPalette
 # Naming convention for convenience:
 # m --> main and f --> front
 # l --> listen and c --> connect
+# s --> send and r --> receive
+# h --> horizontal and v --> vertical
 
+# Create a container that allows making widgets more conveniently
 def make_container_widget(widgets, vertical = True):
     """Takes a list of widgets and creates a vertical or horizontal layout with the widgets in it."""
 
@@ -25,6 +29,7 @@ def make_container_widget(widgets, vertical = True):
 
     return new_widget
 
+# The main application class that is used in main.py
 class Application():
     def __init__(self):
         # Creation of the main application and style
@@ -133,8 +138,9 @@ class Application():
         self.window.setFixedSize(800,800)
         self.window.setWindowTitle("Simple Python Transfer Protocol")
 
-    def create_listen_panel():
+    def create_listen_panel(self):
         pass
 
+    # Running the program
     def execute(self):
         self.app.exec()

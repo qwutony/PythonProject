@@ -2,6 +2,6 @@
 
 from application import Application
 
-ptp = Application()
+sptp = Application()
 
-ptp.execute()
+sptp.execute()
