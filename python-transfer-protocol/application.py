@@ -5,6 +5,10 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPalette
 
+from network import Network
+
+import os
+
 # Naming convention for convenience:
 # m --> main and f --> front
 # l --> listen and c --> connect
@@ -62,15 +66,19 @@ class Application():
         fl_button = QRadioButton("Listen for Connection")
 
         # Creation of a vertical connection widget
-        c_label = QLabel("Input an IP Address to connect:")
+        c_label = QLabel("Input an IP Address and Port to connect:")
         c_label_IP = QLabel("IP:")
-        c_input = QLineEdit()
-        c_input.setText("127.0.0.1")
+        c_label_port = QLabel("Port:")
+
+        c_input_host = QLineEdit()
+        c_input_host.setText("127.0.0.1")
+        c_input_port = QLineEdit()
+        c_input_port.setText("8888")
 
         c_button = QPushButton("Connect")      
-        c_button.clicked.connect(self.create_main_panel)
+        c_button.clicked.connect(self.c_button_clicked)
 
-        c_subpanel = make_container_widget([c_label_IP, c_input], vertical = False)
+        c_subpanel = make_container_widget([c_label_IP, c_input_host, c_label_port, c_input_port], vertical = False)
         c_panel = make_container_widget([c_label, c_subpanel, c_button])
         
         # Creation of a vertical listening widget
@@ -79,7 +87,7 @@ class Application():
         l_input = QLineEdit()
         l_input.setText("4444")
         l_button = QPushButton("Listen")
-        l_button.clicked.connect(self.create_listen_panel)
+        l_button.clicked.connect(self.l_button_clicked)
 
         l_subpanel = make_container_widget([l_label_port, l_input],vertical = False)
         l_panel = make_container_widget([l_label, l_subpanel, l_button])
@@ -108,14 +116,23 @@ class Application():
 
         # Attribute for later references
         self.f_panel = f_panel # Used in __init__()
+        self.c_input_host = c_input_host # Used in c_button_clicked()
+        self.c_input_port = c_input_port # Used in c_button_clicked()
+        self.l_input = l_input # Used in l_button_clicked()
 
     # Create a main panel that serves as the primary application interface
     def create_main_panel(self):
+
         # Create two displays for the local and remote file systems
         m_local_fs_display = QTextEdit()
         m_local_fs_display.setReadOnly(True)
         m_remote_fs_display = QTextEdit()
         m_remote_fs_display.setReadOnly(True)
+
+        files = os.listdir("/root/sptp")
+
+        for file in files:
+            m_local_fs_display.append(file)
 
         # Combine the displays into a container widget
         mh_panel = make_container_widget([m_local_fs_display, m_remote_fs_display], vertical = False)
@@ -140,6 +157,19 @@ class Application():
 
     def create_listen_panel(self):
         pass
+
+    def c_button_clicked(self):
+
+        self.connection = Network.Connection(self.c_input_host.text(), self.c_input_port.text())
+
+        print("Connecting Successful")
+
+    def l_button_clicked(self):
+
+        self.listener = Network.Listener(self.l_input.text())
+
+        print("Listening Successful")
+        self.accepting = True
 
     # Running the program
     def execute(self):
