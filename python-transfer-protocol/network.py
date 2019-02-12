@@ -59,7 +59,7 @@ class Network():
         def __init__(self, port):
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            self.socket.bind(('0.0.0.0', int(port)))
+            self.socket.bind(('0.0.0.0', 8888))
             self.socket.listen()
 
         def try_get_connection(self):
@@ -76,15 +76,3 @@ class Network():
             (client_socket, dontcare) = self.socket.accept()
 
             return Network.Connection(socket_ = client_socket)
-
-    def get_ip():
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        try:
-            # doesn't even have to be reachable
-            s.connect(('10.255.255.255', 1))
-            ip_address = s.getsockname()[0]
-        except:
-            ip_address = '127.0.0.1'
-        finally:
-            s.close()
-        return ip_address

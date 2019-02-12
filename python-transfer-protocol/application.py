@@ -1,9 +1,9 @@
 # This is the application developed using PyQt5
 # It allows for a graphical visualisation of the file transfer protocol 
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import *
-from PyQt5.QtGui import QPalette
+from PyQt5.QtGui import QPalette, QMovie
 
 from network import Network
 
@@ -48,7 +48,8 @@ class Application():
         
         # Creation of widget panels
         self.create_connection_panel()
-        self.create_main_panel
+        self.create_main_panel_connect
+        self.create_main_panel_listen
 
         # Display the front panel
         window.setCentralWidget(self.f_panel)
@@ -59,6 +60,17 @@ class Application():
         # Attributes for later references
         self.app = app # Used in execute()
         self.window = window # Used in create_m_panel()
+
+        self.timer = QTimer()
+        self.timer.start(100)
+        self.timer.timeout.connect(self.tick)
+
+        self.accepting = False
+        self.receiving = False
+        self.connection = None
+
+        self.client = False
+        self.server = False
 
     # Create panel that is used to initiate a connection
     def create_connection_panel(self):
@@ -76,7 +88,7 @@ class Application():
         c_input_port.setText("8888")
 
         c_button = QPushButton("Connect")      
-        c_button.clicked.connect(self.c_button_clicked)
+        c_button.clicked.connect(self.create_main_panel_connect)
 
         c_subpanel = make_container_widget([c_label_IP, c_input_host, c_label_port, c_input_port], vertical = False)
         c_panel = make_container_widget([c_label, c_subpanel, c_button])
@@ -87,7 +99,7 @@ class Application():
         l_input = QLineEdit()
         l_input.setText("4444")
         l_button = QPushButton("Listen")
-        l_button.clicked.connect(self.l_button_clicked)
+        l_button.clicked.connect(self.create_main_panel_listen)
 
         l_subpanel = make_container_widget([l_label_port, l_input],vertical = False)
         l_panel = make_container_widget([l_label, l_subpanel, l_button])
@@ -121,21 +133,26 @@ class Application():
         self.l_input = l_input # Used in l_button_clicked()
 
     # Create a main panel that serves as the primary application interface
-    def create_main_panel(self):
+    def create_main_panel_connect(self):
+
+        self.connection = Network.Connection(self.c_input_host.text(), self.c_input_port.text())
 
         # Create two displays for the local and remote file systems
-        m_local_fs_display = QTextEdit()
-        m_local_fs_display.setReadOnly(True)
-        m_remote_fs_display = QTextEdit()
-        m_remote_fs_display.setReadOnly(True)
+        cm_local_fs_display = QTextEdit()
+        cm_local_fs_display.setReadOnly(True)
+        cm_remote_fs_display = QTextEdit()
+        cm_remote_fs_display.setReadOnly(True)
 
-        files = os.listdir("/root/sptp")
+        files = os.listdir("/root/sptp_client")
+
+        connect_files = []
 
         for file in files:
-            m_local_fs_display.append(file)
+            cm_local_fs_display.append(file)
+            connect_files.append(file)
 
         # Combine the displays into a container widget
-        mh_panel = make_container_widget([m_local_fs_display, m_remote_fs_display], vertical = False)
+        mh_panel = make_container_widget([cm_local_fs_display, cm_remote_fs_display], vertical = False)
 
         mh_history = QTextEdit()
         mh_history.setReadOnly(True)
@@ -153,23 +170,94 @@ class Application():
 
         self.window.setCentralWidget(m_panel)
         self.window.setFixedSize(800,800)
-        self.window.setWindowTitle("Simple Python Transfer Protocol")
+        self.window.setWindowTitle("Local: Simple Python Transfer Protocol")
 
-    def create_listen_panel(self):
-        pass
+        self.connect_files = connect_files
 
-    def c_button_clicked(self):
+        self.cm_remote_fs_display = cm_remote_fs_display
 
-        self.connection = Network.Connection(self.c_input_host.text(), self.c_input_port.text())
-
-        print("Connecting Successful")
-
-    def l_button_clicked(self):
+    def create_main_panel_listen(self):
 
         self.listener = Network.Listener(self.l_input.text())
 
-        print("Listening Successful")
         self.accepting = True
+
+        # Create two displays for the local and remote file systems
+        m_local_fs_display = QTextEdit()
+        m_local_fs_display.setReadOnly(True)
+        m_remote_fs_listen = QTextEdit()
+        m_remote_fs_listen.setReadOnly(True)
+
+        files = os.listdir("/root/sptp_server")
+
+        listen_files = []
+
+        for file in files:
+            m_local_fs_display.append(file)
+            listen_files.append(file)
+
+        # Combine the displays into a container widget
+        mh_panel = make_container_widget([m_local_fs_display, m_remote_fs_listen], vertical = False)
+
+        mh_history = QTextEdit()
+        mh_history.setReadOnly(True)
+        mh_history.setFixedHeight(100)
+
+        # Prototyping the command line interface
+        msr_button = QPushButton()
+        msr_input = QLineEdit()
+        
+        # Transfer command line
+        mh_input = make_container_widget([msr_button, msr_input], vertical = False)
+
+        # Create entire panel that will be the window layout
+        m_panel = make_container_widget([mh_panel, mh_history, mh_input])
+
+        self.window.setCentralWidget(m_panel)
+        self.window.setFixedSize(800,800)
+        self.window.setWindowTitle("Server: Simple Python Transfer Protocol")
+
+        self.m_remote_fs_listen = m_remote_fs_listen
+
+        self.listen_files = listen_files
+
+    def tick(self):
+        if self.accepting:
+            self.connection = self.listener.try_get_connection()
+            self.server = True
+            if self.connection is not None:
+                self.accepting = False
+                self.receiving = True
+        
+        elif self.receiving:
+                if self.server:
+                    they_sent = self.connection.try_receive()
+                    if they_sent is not None:
+                        file_list = str(they_sent, 'utf-8')
+                        self.m_remote_fs_listen.append(file_list)
+                        for i in range(len(self.listen_files)):
+                            self.connection.send(str.encode(self.listen_files[i] + "\n"))
+                elif self.client:
+                    they_sent = self.connection.try_receive()
+                    if they_sent is not None:
+                        file_list = str(they_sent, 'utf-8')
+                        self.cm_remote_fs_display.append(file_list)
+                else:
+                    print("Something is wrong...")
+
+        elif self.connection is not None:
+            self.connection.try_connect()
+            self.client = True
+            if self.connection.connected:
+                self.receiving = True
+                for i in range(len(self.connect_files)):
+                        self.connection.send(str.encode(self.connect_files[i] + "\n"))
+
+    # def loading(self):
+    #     load = QLabel()
+    #     movie = QMovie("loading.gif")
+    #     load.setMovie(movie)
+    #     movie.start()
 
     # Running the program
     def execute(self):
