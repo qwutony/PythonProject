@@ -1,16 +1,21 @@
 import socket
 import select
 
-
+# Define the superclass Network
 class Network():
+    # Create Connection class
     class Connection():
         """Encapsulates a connection to a remote host"""
 
         def __init__(self, host = None, port = None, socket_ = None):
+            """Initiatialisation of Connection class, requiring inputs of host, port and socket"""
 
+            # Connect a socket if one exists
             if socket_ is not None:
                 self.socket = socket_
                 self.connected = True
+
+            # Allocate host and port, and create a new socket
             elif host is not None:
                 self.host = host
                 self.port = port
@@ -18,15 +23,15 @@ class Network():
                 self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.socket.setblocking(0)
 
-
                 self.try_connect()
                 self.connected = False
 
+            # Error handler
             else:
                 raise TypeError()
 
         def try_connect(self):
-            """tries to connect to the host and port specified in the constructor
+            """Tries to connect to the host and port specified in the constructor
             and sets self.connected to True if successful"""
 
             try:
@@ -35,18 +40,16 @@ class Network():
             except BlockingIOError as e:
                 pass
 
-
+        # Send information through the socket
         def send(self, bytes):
-            """sends some data (a bytes object) to the other host"""
+            """Sends some data (a bytes object) to the other host"""
             self.socket.send(bytes)
 
+        # Receive data from socket
         def try_receive(self):
-            """recieves and returns some data (a bytes object) from the other host"""
+            """Recieves and returns some data (a bytes object) from the other host"""
 
             (inputs_ready, dontcare, dontcare) = select.select([self.socket], [], [], 0)
-
-            # inputs_ready == [] if no connection available
-            # inputs_ready == [self.socket] if a connection is available
 
             if len(inputs_ready) == 0:
                 return None
@@ -54,21 +57,20 @@ class Network():
             return self.socket.recv(1024)
 
     class Listener():
-        """Encapsulates a thing listening for connections"""
-
+        """Encapsulates a listener that awaits for connections"""
         def __init__(self, port):
+            """Create a listening socket that is bound to a local port and listen"""
+
             self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-            self.socket.bind(('0.0.0.0', 8888))
+            self.socket.bind(('0.0.0.0', int(port)))
             self.socket.listen()
 
+        # Tries to connect to socket, accept or else None
         def try_get_connection(self):
             """Tries to get an incoming Connection, returning it or None"""
 
             (inputs_ready, dontcare, dontcare) = select.select([self.socket], [], [], 0)
-
-            # inputs_ready == [] if no connection available
-            # inputs_ready == [self.socket] if a connection is available
 
             if len(inputs_ready) == 0:
                 return None
