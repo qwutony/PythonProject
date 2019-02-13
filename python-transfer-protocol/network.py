@@ -1,5 +1,8 @@
 import socket
+"""https://docs.python.org/3/library/socket.html"""
+
 import select
+"""https://docs.python.org/3/library/select.html"""
 
 # Define the superclass Network
 class Network():
