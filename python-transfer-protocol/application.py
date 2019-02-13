@@ -4,10 +4,13 @@
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import *
 from PyQt5.QtGui import QPalette, QMovie
+"""For more information about PyQt5, refer to this: http://pyqt.sourceforge.net/Docs/PyQt5/"""
 
 from network import Network
+"""Importing Network script"""
 
 import os
+"""For more information about os, refer to this: https://docs.python.org/3/library/os.html"""
 
 # Create a container that allows making widgets more conveniently
 def make_container_widget(widgets, vertical = True):
@@ -76,6 +79,7 @@ class Application():
         """Create panel that is used to initiate a connection"""
         fc_button = QRadioButton("Connect to IP Address")
         fl_button = QRadioButton("Listen for Connection")
+        fh_button = QRadioButton("How to use SPTP")
 
         """Creation of a vertical connection widget"""
         c_label = QLabel("Input an IP Address and Port to connect:")
@@ -106,26 +110,50 @@ class Application():
 
         t_label = QLabel("Simple Python Transfer Protocol")
 
+        h_label = QLabel("Connect to IP Address:\n\n"
+                              "Connect to an existing listener\n"
+                              "Requires input of target IP address and port\n"
+                              "If connected, a new panel will open\n\n"
+                          "Listen for connection:\n\n"
+                              "Await for another application to connect\n"
+                              "Requires input of listening port\n"
+                              "If connected, a new panel will open\n\n"
+                          "Application Interface (after connected):\n\n"
+                              "Left Panel: Local /root/sptp files/folder\n"
+                              "Right Panel: Remote /root/sptp files/folder\n")
+        h_panel = make_container_widget([h_label])
+
         """Creation of an entire front panel, with radio buttons that toggle between connection and listening"""
-        f_panel = make_container_widget([t_label, fc_button, fl_button, l_panel, c_panel])
+        f_panel = make_container_widget([t_label, fc_button, fl_button, fh_button, l_panel, c_panel, h_panel])
 
         l_panel.hide()
         c_panel.hide()
+        h_panel.hide()
 
         def show_c_panel():
             """Functions that determine which widget is visible at one time"""
             l_panel.hide()
+            h_panel.hide()
             c_panel.show()
             self.window.adjustSize()
 
         def show_l_panel():
             """Functions that determine which widget is visible at one time"""
             c_panel.hide()
+            h_panel.hide()
             l_panel.show()
+            self.window.adjustSize()
+
+        def show_h_panel():
+            """Functions that determine which widget is visible at one time"""
+            c_panel.hide()
+            l_panel.hide()
+            h_panel.show()
             self.window.adjustSize()
 
         fc_button.clicked.connect(show_c_panel)
         fl_button.clicked.connect(show_l_panel)
+        fh_button.clicked.connect(show_h_panel)
 
         # Attribute for later references
         self.f_panel = f_panel # Used in __init__()

@@ -40,12 +40,20 @@ class Network():
             except BlockingIOError as e:
                 pass
 
-        # Send information through the socket
-        def send(self, bytes):
-            """Sends some data (a bytes object) to the other host"""
-            self.socket.send(bytes)
+        # Send encrypted information through the socket
+        def send(self, plaintext_bytes):
+            """Sends some encrypted data (a bytes object) to the other host"""
+            encrypted_bytes = []
+            key = 77
 
-        # Receive data from socket
+            for byte in plaintext_bytes:
+                encrypted_bytes.append(byte ^ key)
+
+            encrypted_bytes = bytes(encrypted_bytes)
+            
+            self.socket.send(encrypted_bytes)
+
+        # Receive encrypted data from socket and unencrypts it
         def try_receive(self):
             """Recieves and returns some data (a bytes object) from the other host"""
 
@@ -54,7 +62,15 @@ class Network():
             if len(inputs_ready) == 0:
                 return None
 
-            return self.socket.recv(1024)
+            decrypted_bytes = []
+            encrypted_bytes = self.socket.recv(1024)
+
+            for byte in encrypted_bytes:
+                decrypted_bytes.append(byte ^ 77)
+
+            decrypted_bytes = bytes(decrypted_bytes)
+
+            return decrypted_bytes
 
     class Listener():
         """Encapsulates a listener that awaits for connections"""
