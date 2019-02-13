@@ -9,12 +9,16 @@
 8. If connection is complete, both windows should have a new interface.
 9. Your folders in the /root/sptp directory should be showing.
 
+Upon execution of this test, the application successfully connected to another instance of itself. 
+There are not issues with the application when run following the instructions outlined above.
+
 ***Test Procedure 2: Unusual Input in Application***
 1. Open the application.
 2. Select the "Listen to connection" option
 3. In the port address, type a non-numerical input
 4. It is likely that the application will crash and an error message be shown:
 
+The result:
 "Traceback (most recent call last):
 File "/home/qwutony/Python/python-transfer-protocol/application.py", line 211, in create_main_panel_listen
 self.listener = Network.Listener(self.l_input.text())
@@ -22,6 +26,9 @@ File "/home/qwutony/Python/python-transfer-protocol/network.py", line 85, in __i
 self.socket.bind(('0.0.0.0', int(port)))
 ValueError: invalid literal for int() with base 10: 'dfngjkd'
 Aborted"
+
+The test resulted in the application breaking. This is because it did not expect a literal character inserted into the port parameter.
+To improve the product it is necessary to sanitise the input to prevent non-numerical input.
 
 ***Test Procedure 3: Unusual Input in Application***
 1. Open the application.
@@ -52,3 +59,6 @@ Traceback (most recent call last):
 ValueError: invalid literal for int() with base 10: 'sdjkfnsdkjg'
 Aborted
 
+These tests all resulted in the application breaking. The literal characters once again broke the application because it expected an integer.
+Furthermore, the application broke when connecting to an address that does not have a listener. This terminated the application as expected.
+To make the product more viable, it should result in an error, rather than breaking.
