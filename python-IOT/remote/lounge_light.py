@@ -3,14 +3,14 @@
 from rpyc_classic import *
 from switch_device import *
 
-class LightController(SwitchDevice):
+class LoungeLight(SwitchDevice):
     def get_name(self):
         return 'Light Controller (Lounge Room)'
 
     def get_label(self):
-        return 'Turn on/off the light:'
+        return 'Toggle light on/off:'
 
-my_device = LightController()
+my_device = LoungeLight()
 my_device.value = False
 
 ClassicServer.host = '127.0.0.4'
