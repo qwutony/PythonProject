@@ -16,7 +16,9 @@ There are not issues with the application when run following the instructions ou
 1. Open the application.
 2. Select the "Listen to connection" option
 3. In the port address, type a non-numerical input
-4. It is likely that the application will crash and an error message be shown:
+4. The ideal behaviour for the program will be to display an error message that tells the user that the application cannot allow non-numerical inputs of port
+
+It is likely that the application will crash and an error message be shown:
 
 The result:
 "Traceback (most recent call last):
@@ -37,7 +39,9 @@ To improve the product it is necessary to sanitise the input to prevent non-nume
 4. Alternatively, type nothing and press connect.
 5. Alternatively, connect without a listener.
 6. Click connect.
-7. It is likely that there will be problems with the application:
+7. The application should be able to reject the input with an error message, requiring the input of a non-numerical port and valid IP.
+
+It is likely that there will be problems with the application:
 
 For connection without listener:
 Traceback (most recent call last):
