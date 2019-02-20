@@ -30,6 +30,7 @@ can be put into `command.txt`.
 `setup.sh` and `install.sh` are both scripts that can be executed on
 a victim's machine to get them to download the `bot.py` file and execute it
 
-# TODO
+# Uninstallation script
 
-* An uninstall script added to the bot
+Added to `bot.py` an uninstall function that will remove the bot and kill the
+process. The example uninstallation script is in `scripts/uninstall.sh`.
