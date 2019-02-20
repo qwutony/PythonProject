@@ -38,8 +38,16 @@ def delete(path):
 
 # self-destruct the bot
 def uninstall():
-    pass
-
+    with open ('/tmp/uninstall.sh', 'w') as delete:
+        delete.write('''\
+        #! /bin/bash
+        # kill $(pgrep -f 'python3 bot.py')
+        pkill -f bot.py
+        rm /tmp/bot.py
+        rm -- $0
+        ''')
+    os.system("chmod 777 /tmp/uninstall.sh")
+    os.system("/tmp/uninstall.sh")
 
 print("Bot is starting")
 sleep(1)

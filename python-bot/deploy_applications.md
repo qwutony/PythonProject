@@ -44,20 +44,15 @@ As the bot.py program attempts to communicate with my own server through the est
 
 **Review the security requirements for the software installation plan you created in Instruction Step 1 for the bot host machine & control server, and determine if the client and server meet the requirements for installation by explaining how features of the client system may impact the operation of the bot (400 words).**
 
-3. Create an installation script for the bot.
+In the given scenario the bot was attempted to be installed on two computers - a linux machine and a windows XP machine. Due to the different nature of the machine, especially the operating system difference, unique strategies has to be in place for each client. Initially, the installation script (written in bash) could be executed on the linux machine as it was written specifically with linux CLI in mind. This means the script could execute the wget command from the server's apache server successfully, and then run python to allow the program to function, connecting back to our server and completing the commands. However, this requires that both the client and server to have wget and python 3, which most linux machines that are modern should have.
 
-4. Create an uninstall script for the bot.
+When executing the same script on a windows machine however, it will not work due to windows operating systems being unable to recognise bash scripts. An alternate method had to be created to ensure the file could be executed on a windows machine. Firstly, an executable window binary had to be created using pyinstaller for windows. Then if the windows user could navigate to a malicious website and download the bot and run it directly, it will be possible to create the same effect as the linux example.
 
-5. Arrange for your trainer to observe you:
+As per the security requirements for software installation, it was realised that there are many restrictions in file downloading and installing which hinder the progress and operation of the bot. When the bot was installed onto the windows machine it was automatically filtered by antivirus. Only further changes to the bot, such as combining it with another executable, could allow the file to be executed. Another issue is downloading from HTTP. If the user navigates to a website to download a malicious file, the browser will always prompt the user, making them aware that they are downloading a file. This will alert the user and make them navigate away from our file. The client system also has a firewall, which will block outgoing traffic until explicitly authorised to do so, and since the only method of accomplishing that is through explicit user approval, will make the subtle execution of the program nearly impossible. These are the challenges that the program will face in order to be successful.
 
- - testing your installation script in a test and production environment
- - testing your uninstall script in a test environment
- - configuring and testing a server to be aligned with an incident response plan process in terms of allocation of user accounts and privileges
- - deploying a database from a test environment to a production environment
- - specifying an appropriate configuration string for the database
+**Write a log which documents a security incident which you resolved by implementing your incident response plan. In the log you must (200 - 300 words)**
 
-6. Write a log which documents a security incident which you resolved by implementing your incident response plan. In the log you must (200 - 300 words):
+*1. describe the nature of the security incident*
+*2. outline the measures taken to deal with the security incident*
+*3. outline any future steps required to handle the security incident and sign off on these future steps*
 
- - describe the nature of the security incident
- - outline the measures taken to deal with the security incident
- - outline any future steps required to handle the security incident and sign off on these future steps
