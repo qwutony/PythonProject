@@ -13,6 +13,7 @@ Three: The final option will be to take advantage of a pre-existing vulnerabilit
 *2. determine ONE installation method to be used and create an ordered list of installation steps that a person with no technical expertise could follow (200 - 400 words)*
 
 The objective is to create an installation method that can allow for the remote execution of the bot application. One installation method is the SSH installation method, where an attacker with a ssh credential of a server can execute an installation script to execute the bot, and then terminate the connection:
+
     1. Obtain the python-bot application folder. It is assumed that this step is already accomplished. Enter the folder.
 
     2. The folder should contain a "install.sh" file and a bot.py file, as well as other files which are irrelevant for now
