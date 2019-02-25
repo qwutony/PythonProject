@@ -4,6 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 import rpyc
+import drag_drop_container
 
 
 class console():
@@ -99,7 +100,6 @@ class console():
 
         panel.setLayout(layout)
         self.main_layout.addWidget(panel)
-
 
 
     def run(self):
