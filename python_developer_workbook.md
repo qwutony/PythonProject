@@ -1,39 +1,46 @@
-***Python Developer Workbook - Task 5***
+# Python Developer Workbook - Task 5
 
 1. Define the following terms and state why they are important in the relating to the planning phase of securing a network: 
-- security model
+
+**Security model**
+
 	A security model is a framework from where security policies are developed, specified and enforced. The security model is implemented through policy, and can be on the basis of a formal model, or no theoretical grounding. The model aims to precisely define the level of implementation of security requirements. This is accomplished through linking the important aspects of security with their relationship with system behaviour. Essentially, it provides the blueprint that properly defines the security levels of network devices, operating systems, hardware, protocols and applications that can contain security vulnerabilties that can affect the system and the environment as a whole.
 
 	In definition, a security model is a statement that outlines the requirements to properly implement certain security policies. A security model is important because it forms the foundation of implementing a secure system. Without it there will be a lack of cohesion and system-wide implementation of security, causing servers to be susceptible to attack.
 
-- threat model
+**Threat model**
+
 	A threat model is the active process in the security development process that identifies potential risks and threats, both internally or externally, and creates appropriate tests and countermeasures with the focus on responding to these potential threats. In cyber security, as the industry is constantly evolving, so too does the creation of threat models to accurately respond to emerging threats. To implement a successful threat model it is essential to identify potential threats, analyze these effects, determining the significance and find the appropriate counter-strategy.
 
 	A threat model is important because an offensive, proactive strategy to security can allow the detection of possible intrusion pathways early, thus counter-measures can be timely adopted.
 
 2	Define the following terms and state why they are important in terms of the building phase of securing a network: 
-- security policies 
+
+**Security policies**
+	
 	Security policies are the primary element that in a successful implementation of security requirements. A security policy will set the ground rules in every organisation in regards to the level of security for each piece of infrastructure. A policy can be concerned about data access requirements, the level of security that is required for different systems, and the procedures and actions that are required when such requirements are not met.
 
 	The security model and security policy are closely intertwined. A security policy can be about authentication and access control rights, and the security model will outline the logic and rules that should be implemented to ensure that no lower level users can have access control to higher level objects, for example.
 
 	Security policies are important in securing a network because they are rulesets that are to be followed by the personel in the organisation. Proper following of guidelines can determine what a service can and cannot do, allowing for detection of anything that is beyond the extraordinary.
-
-- security templates
+	
+**Security templates**
 
 	Security templates are templating files that are used to organise, configure, manage security on computers. These are otherwise known as a collection of security configuration settings that are applied to the domain controller, member servers or a workstation. The templates for security can be applied to a single workstation, or in Group Policy that affects a range of users. In Windows, the security templating and configurations are within the Active Directory. The advantages of security templating for improved efficiency and reduction of repetition, as templates can be directly imported to a new computer in the network. It is therefore possible to manage multiple computers in scale.
 
 	Security templates are important because of reusability, and allows more efficient implementation of security policies.
 
 3	Define the following terms and state why they are important during the managing phase of securing a network:
-- network monitoring 
+
+**Network monitoring**
+
 	Network monitoring is the systematic effort of patrolling system-wide traffic and components. Monitoring allows for the detection of slow or failing network components, such as server-side issues, router and switch problems and other device issues. It is a subset of network management, where all problems that are alerted are directed to the Network Administrator. Network monitoring is accomplished through the use of programs that help detect outages and other trouble. This is different to the intrusion detection system.
 
 	An example would be to determine the sufficient functionality of a HTTP server, the software can periodically send a request packet to determine if there are any issues with the service. For mailing services, an SMTP message can be sent and received by IMAP and POP3. 
 
 	It is important for the management phase of securing a network, because networks require constant attention and any changes should be met with a reasonable action. Having network monitoring allows for rapid response to unusual behaviour, and appropriate measures are implemented.
 
-- security policy enforcement
+**Security policy enforcement**
 
 	Security policy as aforementioned forms the basis of an organisation's information security. It is common and necessary that adequate security policy is in place to ensure information security. However it is insufficient to only have security policies but also achieve policy enforcement and compliance. Security policy enforcement is focused on teaching and educating users on the importance of security and the necessity of proper security focused conduct. Enforcement is tied with a program to educate, such as notifying of the existence of policy, complying with the policy, and consequences of non-compliance.
 
@@ -41,18 +48,24 @@
 
 4	Describe TWO common types of ICT networks and why they are used and identify the hardware required to implement them. 100 - 200 words
 
-	LAN (Local Area Network): A local area network is a computer network that is usually located in a single room or a small building. It consists of several computers and resources such as printers and scanners that are interconnected. The hardware that is required to implement LAN are usually ethernet cables. LAN is used because it allows for computers on the LAN to share resources and share and access information. 
+**LAN (Local Area Network)**
+	
+	A local area network is a computer network that is usually located in a single room or a small building. It consists of several computers and resources such as printers and scanners that are interconnected. The hardware that is required to implement LAN are usually ethernet cables. LAN is used because it allows for computers on the LAN to share resources and share and access information. 
 
-	WLAN (Wireless Local Area Network): A wireless local area network is a computer network that is similar to LAN but instead of using cable hardware, uses Wi-Fi technology for intercommunication. Routers and wireless switches are used to communicate, send and receive data using wireless adaptors. It is physically safer than LAN because there are no cables. The point of a WLAN is the same as a LAN, and allows computers to share information together.
+**WLAN (Wireless Local Area Network)**
+	
+	A wireless local area network is a computer network that is similar to LAN but instead of using cable hardware, uses Wi-Fi technology for intercommunication. Routers and wireless switches are used to communicate, send and receive data using wireless adaptors. It is physically safer than LAN because there are no cables. The point of a WLAN is the same as a LAN, and allows computers to share information together.
 
 5	Describe TWO auditing and TWO penetration testing techniques.	250 - 300 words
 
-	Security Auditing:
+**Security Auditing**
+
 	1. Vulnerability Scanning: Vulnerability scanning is an inspection of potential exploitable aspects of computers or networks. It detects vulnerabilities and weaknesses in these systems that may arise by using active tools that attackers can also have access to. It allows organisations to gauge the extent of its security vulnerabilities and the likeliness of being exposed externally. Within vulnerability scanning there are several categories, such as network enumerator, which retrieves information about users and groups on networked computers.
 
 	2. Network Scanning: The use of network scanning tools verifies connectivity between host and organisation networks, which provides a complete list of everything that is active in a system. Through network scanning it is possible to verify unauthorized network connections, services and collect evidence for forensics. Network scanning undergoes a procedure of identifying active hosts on a network. Some examples of network scanning will be through the use of the automated network scanning tool nmap, and can be used to scan for ports and enumerate them, or to conduct ping sweeps to discover available servers on the network.
 
-	Penetration Testing:
+**Penetration Testing**
+
 	1. Manual: A manual approach of penetration testing uses non-automatic tools that focus on enumerating and exploiting by themselves. This can include nmap scans and visiting the website to find vulnerabilities, and creating and developing exploits for use. Manual penetration testing may not be scalable in the way that automated scans are, but many vulnerabilities require manual testing to be able to verify and successfully exploit the situation.
 
 	2. Automatic: An automatic approach of penetration testing 
@@ -62,53 +75,63 @@
 
 	The analysis of log files is a complicated process. The best approach to analyse log files is to use log analysis tools such as splunk to help extract data from log files and find trends and patterns that will ultimately help guide general security. The pattern detection allows filtering messages to find relevant security issues, and correlation analysis can help detail a particular event(s). This can both assist the future planning of security, but also assist in preventing attacks that occur while it is happening. 
 
+	The analysis of logs can discover incidents while it is happening. An IP address that is constantly scanning the network for example, can be tracked, and investigated, and reverse tracked to discover the location of the hacker, for example. It is also possible to discover what the hacker is attempting to do, and countermeasures can be placed against it.
+
 7	Describe TWO elements of network infrastructure common to all organisations from the list below: - routers - switches - cabling - gateway. 100 - 200 words
 
-	- routers: A router is an appliance that facilitates the transferral of information between computer networks. The router serves as a gateway which is between where two networks or more intersect. The router aims to analyse a packets destination IP address, and finds the best and most efficient method to forward it to the recipient. Routers are situated on the OSI model network layer, since they are responsible for connecting machines via the internet protocol.
+**Routers** 
+	
+	A router is an appliance that facilitates the transferral of information between computer networks. The router serves as a gateway which is between where two networks or more intersect. The router aims to analyse a packets destination IP address, and finds the best and most efficient method to forward it to the recipient. Routers are situated on the OSI model network layer, since they are responsible for connecting machines via the internet protocol.
 
-	- switches: A switch enables network connected devices to be able to communicate more efficiently. It is used in the data link layer (layer 2 of the OSI model) and helps to use hardware addresses (MAC) to connect, process and forward data at a lower level. The most common form of swtiches are for the ethernet.
+**Switches**
+
+	 A switch enables network connected devices to be able to communicate more efficiently. It is used in the data link layer (layer 2 of the OSI model) and helps to use hardware addresses (MAC) to connect, process and forward data at a lower level. The most common form of swtiches are for the ethernet.
 
 8	Describe the purpose and capabilities of TWO software and TWO hardware network security solutions. 200 - 300 words
 
-	Software network security solutions
+**Software network security solutions**
+
 	- Antivirus software (e.g. Avast): Antivirus software is a software network security solution that serves to protect systems, servers and devices by matching incoming traffic and files with recorded list of vulnerabilities that is frequently updated. Antivirus can be deployed that is network wide.
 
 	- Software Firewall: A software firewall is software that is installed on the computer that has internet connection. These are cheap and easy to install, but may have problems related to compatibility and conflicts with other programs that is installed.
 
-	Hardware network security solutions
+**Hardware network security solutions**
+
 	- Hardware Firewall: Hardware firewalls are generally devices that are placed between the router and internet connections. These are dedicated security devices which are optimised to carry out firewall duties. They are designed solely for firewall purposes, and thus do not weigh down on resources of personal computers.
 
-	- PASS
+	- Hardware Full Disk Encryption: Hardware Disk Encryption converts all the information into encrypted code, being unable to access unless a key is supplied. The symmetric encryption key is maintained independently, and thus making the memory immune as an attack vector.
 
 9	Explain the role of the following concepts in terms of the processes and techniques of object-oriented programming: (250 - 350 words)
-- abstraction 
+
+**Abstraction** 
 
 	Abstraction is the act of removing characteristics and reducing something to a set of essential characteristics. This is used to reduce the complexity of the creation of an object, and thus increase the efficiency of the object. A method that a programmer can do is to name entities in a manner that has all the practical and useful elements included, and none of the non-essential ones.
 
-- inheritance 
+**Inheritance**
 
 	Inheritance is a mechanism of allowing creating another class that share the same set of attributes and methods. Classes can be distinguished between sub, super, parent and child classes. An object class can inherit all of the information from the parent class. This allows the speeding up of program development,but also ensures that the newly created class is valid and working.
 
-- polymorphism
+**Polymorphism**
 
 	Polymorphism is the ability of presenting the same interface in various different forms (such as data types). Using polymorphism, each class will have the same identical underlying data, and each class can share the same attributes and methods, which all represent the behaviours that each have in common. An example is that there are many different shape classes, such as squares and circles, which are inherently different, but can have the same method draw().
 
-- separation of concerns
+**Separation of concerns**
 
 	The separation of concerns is the principle of separating a computer program into sections, with each section 'concerned' about a specific issue. This is a form of abstraction because it simplifies the code to allow it greater efficiency.
 
 10	Describe the process for developing: (150 - 250 words)
-- small-size applications 
+
+**Small-size applications**
 
 		Small-sized applications require less planning and can be accomplished with a single or several developers. There are limited amounts of code required for a fully functional product, and thus small sized applications are easy and efficient to create. This also means that there aren't as many functionalities, and most programs achieve the minimal viable product (MVP).
 
-- large-size applications	
+**Large-size applications**
 
 		Large-sized applications usually require a team of developers and contains a larger repository of code. These applications take a long time to build, and are maintained in github or other private repositories for efficiency between coders. There will usually be a lot of functionalities, and most programs can become commercial viable if they are client facing.
 
 11	Identify and outline the key features of a graphical user interface (GUI), for interaction with an operator. 150 - 250 words
 
-	PASS
+	An operator can interact with a GUI through many different features. Most prominently, they are a pointer, which is the on screen showing of the mouse, the pointer device. There is also icons, which can be interacted with through click and drag, windows, which serve as the main frame for the GUI display, and menus. The graphical user interface makes it easier to communicate with the computer than through traditional methods such as a keyboard, and its application counterparts such as programming languages and command codes.
 
 12	Describe the architecture of a framework for web-enabled application development. 150 - 200 words
 
@@ -122,11 +145,11 @@
 
 	Interprocess communication is a set of programming interfaces that allow for the coordination of activities running concurrently in an operating system. This can allow a single program to accept and handle multiple requests at the same time. As multiple processes can be the result of a single request, and that there are many requests, the processes are required to communicate with each other. Thus there are IPC methods:
 
-		Pipes: A pipe is a technique that allows the passing of information from one program process to another. Pipes are a one-way form of communication. A pipe allows for the output or result of one process to be passed on or "piped" to the next process and so on. This can be demonstrated using the (|) symbol.
+	Pipes: A pipe is a technique that allows the passing of information from one program process to another. Pipes are a one-way form of communication. A pipe allows for the output or result of one process to be passed on or "piped" to the next process and so on. This can be demonstrated using the (|) symbol.
 
-		Named Pipes: Named pipes are the same as pipes in that they pass information from one computer process to another through a pipe or message holding. Named pipes can be used by any process, and do not need to share the same origin process. Any messages sent can only be read by authorized processes that know the name of the named pipe.
+	Named Pipes: Named pipes are the same as pipes in that they pass information from one computer process to another through a pipe or message holding. Named pipes can be used by any process, and do not need to share the same origin process. Any messages sent can only be read by authorized processes that know the name of the named pipe.
 
-		Other techniques include: message queueing, semaphores, shared memory and sockets.
+	Other techniques include: message queueing, semaphores, shared memory and sockets.
 
 14	Identify and outline testing techniques as applied to distributed application development. 200 - 250 words
 
@@ -172,10 +195,11 @@
 
 19	Describe the design pattern used to implement remote procedure calls in the application you created in Task 3.	150 - 250 words
 
-	PASS
+	In order to design a remote procedure call, a RPC server is created which contains and stores classes that contain a variety of methods that can be called at a later time. The classes are turned into instances which are otherwise known as objects. The server then awaits for an RPC connection from a client in the same way other servers do. Once a connection is established, the client can make RPC calls to the object on the server. This is otherwise known as a proxy object call.
 
 20	Explain the information and communications technology (ICT) hardware, software, security protocols and standards and organisational policies relevant to deployment of applications.	150 - 250 words
 
-	PASS
+	The deployment of applications often comes with challenges in many aspects, especially from an organisational perspective. In terms of ICT hardware, the program needs to be installed on a computer or server, which may be blocked by a physical firewall and prevented. The software that is used to deploy applications can be created through a variety of programming languages, such as Python, but can also be defined as scripts. An installation script or executable can be activated to deploy applications. However, there are security standards and protocols that must be followed to prevent malicious installation of applications. Only trusted programs should be installed, and external downloads are prevented using strong software firewalls on the application and network layers. Finally, organisation policies can be implemented to prevent the installation of programs without admin access, for example.
+	
 
 
