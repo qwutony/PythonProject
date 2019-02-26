@@ -14,7 +14,7 @@ Finally, the risk is monitored and reviewed on a regular basis to minimise uncer
 
 ***Valuable Assets that should be defended from threat***
 
-1. 2014 HP Standard Laptop (and other computers on the network)
+**1. 2014 HP Standard Laptop (and other computers on the network)**
 
 This device is a computer/laptop. It is an appliance that is used frequently on a day-to-day basis that is almost essential in modern day communication. It allows for a variety of functions, the most prominent being the ability to connect to the internet.
 
@@ -30,7 +30,7 @@ Monetary Terms: No more than $2000 AUD.
 
 This asset requires the highly level of protection from an attack.
 
-2. Smart Fridge
+**2. Smart Fridge**
 
 A smart refrigerator is a high-tech programmed refrigerator that is able to detect items, keep track of important detail of the goods inside such as expiry and usuage. They scan barcodes to collect information and can communicate directly with the internet.
 
@@ -46,7 +46,7 @@ Monetary Terms: Around $5000 AUD.
 
 This asset requires a moderate level of protection from an attack. Other machines should be prioritised before securing the appliance.
 
-3. Grandstream GVC3200 Business Conference Video Device
+**3. Grandstream GVC3200 Business Conference Video Device**
 
 The GVC3200 is a video conferencing appliance that is used to create room-based video conference solutions that allows the running of a video software to communicate with others. It is suited for business conferences for up to 9 way calls.
 
