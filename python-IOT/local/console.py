@@ -4,7 +4,7 @@ from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 
 import rpyc
-import drag_drop_container
+from drag_drop_container import *
 
 
 class console():
@@ -14,17 +14,13 @@ class console():
         self.app = QApplication([])
 
         connect_panel = self.create_connect_panel()
-
-        window = QWidget()
-        layout = QVBoxLayout()
-        layout.addWidget(connect_panel)
-        window.setLayout(layout)
-        window.show()
-
-
-        self.main_layout = layout
-
-        self.window = window
+        
+        main = DragDropContainer()
+        main.add_child(connect_panel)
+        main.show()
+        
+        self.main_layout = main
+        self.window = main
 
     def create_connect_panel(self):
         panel = QFrame()
@@ -61,6 +57,7 @@ class console():
 
         layout.addWidget(lbl_name)
         layout.addWidget(lbl_label)
+
         if hasattr(device, 'turn_on'):
             rad_on = QRadioButton(device.get_on_label())
             rad_off = QRadioButton(device.get_off_label())
@@ -99,8 +96,7 @@ class console():
             layout.addWidget(lbl_value)
 
         panel.setLayout(layout)
-        self.main_layout.addWidget(panel)
-
+        self.main_layout.add_child(panel)
 
     def run(self):
         self.app.exec_()
