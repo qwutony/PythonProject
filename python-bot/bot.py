@@ -9,7 +9,7 @@ from sys import argv
 import traceback
 
 
-server_ip = '10.1.5.54:8001'
+server_ip = '10.1.4.112:8001'
 
 # run a system command and return its output
 def run(command):
