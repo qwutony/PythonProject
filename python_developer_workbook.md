@@ -54,7 +54,7 @@
 
 **WLAN (Wireless Local Area Network)**
 	
-	A wireless local area network is a computer network that is similar to LAN but instead of using cable hardware, uses Wi-Fi technology for intercommunication. Routers and wireless switches are used to communicate, send and receive data using wireless adaptors. It is physically safer than LAN because there are no cables. The point of a WLAN is the same as a LAN, and allows computers to share information together.
+	A wireless local area network is a computer network that is similar to LAN but instead of using cable hardware, uses Wi-Fi technology for intercommunication. Routers and wireless switches are used to communicate, send and receive data using wireless adaptors. It is physically safer than LAN because there are no cables. The point of a WLAN is the same as a LAN, and allows computers to share information together. The required hardware for creating a WLAN are wireless routers, as compared to broadband modems for non-wireless LANs.
 
 5	Describe TWO auditing and TWO penetration testing techniques.	250 - 300 words
 
