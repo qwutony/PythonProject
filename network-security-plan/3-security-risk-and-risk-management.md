@@ -48,8 +48,9 @@ Due to the urgency of the threat model, the time frame should be as compact as p
 Day One:
 1. Implement WiFi restrictions
 2. Increase password protection
-3. Upgrade to the latest patch
+3. Edit: Upgrade Windows 8.1 to the latest patch, as well as other devices, such as the iOS phones, also upgrade the router firmware if possible.
 4. Improve the physical location of network assets, so that they are more secure. This can be done by purchasing a new table to place the router on, for example ~= $100
+5. Edit: Signing up to a response team service
 
 Day Two:
 1. Teach household members about security --> education costs ~= $500
@@ -61,6 +62,7 @@ Day Three:
 
 Before EO Week 1:
 1. Purchase security cameras to secure the proximity, especially the back fence ~= $2500
+2. Edit: Install these security cameras around the proximity of the house, and configure and set up these cameras.
 
 Constant monitoring:
 1. Security against visitation, so that household is always aware of visitors and their actions
@@ -91,3 +93,5 @@ Continous review should be implemented to ensure that security controls are alwa
 5. Ensure all the security procedures are applied to each new device that enters the household.
 
 **Provide evidence you have received feedback from a industry expert on your risk management plan, and how you have modified your approach based on feedback (notes on feedback or written feedback from industry expert in addition to 100 - 200 words on your response to this feedback.**
+
+There are several adjustments that were made to the risk management plan based off the feedback. The most important adjustments have `Edit:` to show that they have been modified. The approach is to be more concise with explaining security policies, especially regarding the timeliness of the policies.
