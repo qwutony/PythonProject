@@ -1,0 +1,8 @@
+# Security Incident Log
+*Incident Response Plan*
+
+The security incident that is involved regarding a remote installation of a malicious software named `bot.py` on our servers. This program, once executed, can cause significant damage to the system by removing essential files, and also can be used to exfiltrate and extract credentials and sensitive information from the system. The software was installed because of a social engineering attack on one of our employees, as he found and clicked a malicious link in his email, which then redirected him to execute the malicious installation script, downloading the `bot.py` file and executing it. Upon completing, the bot will automatically delete itself from the `/tmp` folder, and kill the process, thereby leaving no trace of the incident from occurring.
+
+In response to the incident, damage mitigation controls were set in place. The attack was on a virtual machine, so the system backup was used to restore it to the original capacity before the attack. As the attacks were recorded in a log file for downloading remote files, the location IP address of the assailant has been tracked and it will be investigated by the digital forensics team. 
+
+In the future, it is essential that remote downloads are strictly prohibited. The employees should be educated in recognising spam and malicious links, and avoid clicking on them at all costs. The firewall configuration should prevent systems from binding to remote systems, so as to prevent the bot from retrieving malicious commands from external machines. Furthermore, a stronger anti-virus should be implemented to detect and remove any viruses and malicious software before they reach the system.
