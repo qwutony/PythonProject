@@ -2,7 +2,7 @@
 
 ***Establishment of a risk management process***
 
-Sounds risk management is procedural. It requires the identification of risks, as outlined in the threat model. Threats are identified through a number of techniques, such as researching various appliances to discover any known exploits and vulnerabilities, or creating scenarios in which an attacker may use to pursue their malicious agendas.
+Sound risk management is procedural. It requires the identification of risks, as outlined in the threat model. Threats are identified through a number of techniques, such as researching various appliances to discover any known exploits and vulnerabilities, or creating scenarios in which an attacker may use to pursue their malicious agendas.
 
 The risk is analysed to determine the likelihood and consequence of each risk. This can be conducted through a risk matrix. The risk is understood and determined if it can affect the functionality of the household, the members of the household, and any other ties they might have.
 
