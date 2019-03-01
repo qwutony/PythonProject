@@ -20,7 +20,14 @@ class console():
         main.show()
         
         self.main_layout = main
-        self.window = main
+        connect_panel.hostname = None
+
+        InFile = open("console_list.txt").readlines()
+
+        for hostname in InFile:
+            connection = rpyc.classic.connect(hostname)
+            device = connection.modules.__main__.my_device
+            self.add_device_panel(device, hostname)
 
     def create_connect_panel(self):
         panel = QFrame()
@@ -47,7 +54,7 @@ class console():
 
         return panel
 
-    def add_device_panel(self, device):
+    def add_device_panel(self, device, hostname):
         panel = QFrame()
         panel.setFrameShape(QFrame.Box)
         layout = QVBoxLayout()
@@ -57,6 +64,8 @@ class console():
 
         layout.addWidget(lbl_name)
         layout.addWidget(lbl_label)
+
+        panel.hostname = hostname
 
         if hasattr(device, 'turn_on'):
             rad_on = QRadioButton(device.get_on_label())
@@ -100,3 +109,12 @@ class console():
 
     def run(self):
         self.app.exec_()
+        outFile = open("console_list.txt", "w")
+        for widget in self.main_layout.list_widgets():
+            name = widget.hostname
+            if name == None:
+                pass
+            else:
+                outFile.write(str(name))
+        outFile.close()
+            
